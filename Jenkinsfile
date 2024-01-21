@@ -12,28 +12,28 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh 'terraform init'
+                    bat 'terraform init'
                 }
             }
         }
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'terraform plan -out=tfplan'
+                    bat 'terraform plan -out=tfplan'
                 }
             }
         }
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'terraform apply -auto-approve tfplan'
+                    bat 'terraform apply -auto-approve tfplan'
                 }
             }
         }
         stage('Upload State to S3') {
             steps {
                 script {
-                    sh 'aws s3 cp terraform.tfstate s3://s3-projo-alpha'
+                    bat 'aws s3 cp terraform.tfstate s3://s3-projo-alpha'
                 }
             }
         }
